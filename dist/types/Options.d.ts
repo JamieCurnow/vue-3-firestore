@@ -23,7 +23,7 @@ export interface OptionsColl<T, M> {
     query?: (CollectionRef: CollectionRef) => Query;
     /** Exposes a function to mutate the data that is fetched from firestore. The mutated data will be returned as 'mutatedData' */
     mutate?: (data: T[]) => M;
-    /** Exposes a hook for when a collection is recieved. Provides access to the recieved and mutated recieved data */
+    /** Exposes a hook for when a collection is recieved. Provides access to the recieved data and mutated data */
     onRecieve?: (data: T[], mutatedData: M | null) => any;
 }
 export interface OptionsDoc<T, M> {
