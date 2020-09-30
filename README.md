@@ -1,8 +1,8 @@
-# firestore-vue-3
+# vue-3-firestore
 An easy way to interactive with Firestore using vue 3 and the composition-api
 
 ## Get started:
-`yarn add firestore-vue-3`
+`yarn add vue-3-firestore`
 
 ### in your .vue file:
 
@@ -14,7 +14,7 @@ An easy way to interactive with Firestore using vue 3 and the composition-api
 <script lang="ts">
 import * as firebase from 'firebase'
 import { defineComponent, ref } from '@vue/composition-api'
-import { FirestoreBind } from '../../firestore-vue-3'
+import { FirestoreBind } from '../../vue-3-firestore'
 export default defineComponent({
   setup() {
     const uid = ref('1')
