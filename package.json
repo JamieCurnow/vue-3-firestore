@@ -10,7 +10,8 @@
   "private": false,
   "scripts": {
     "build": "tsc -d",
-    "watch": "tsc --watch -d"
+    "watch": "tsc --watch -d",
+    "test": "tsc"
   },
   "dependencies": {
     "@vue/composition-api": "^1.0.0-beta.14",
