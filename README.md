@@ -37,7 +37,7 @@ Examples:
 <script lang="ts">
 import * as firebase from 'firebase'
 import { defineComponent, ref } from '@vue/composition-api'
-import { FirestoreBind } from '../../vue-3-firestore'
+import { FirestoreBind } from 'vue-3-firestore'
 export default defineComponent({
   setup() {
     const uid = ref('1')
