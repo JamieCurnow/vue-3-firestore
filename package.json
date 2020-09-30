@@ -1,0 +1,26 @@
+{
+  "name": "firestore-vue-3",
+  "version": "0.0.1",
+  "description": "An easy way to interactive with Firestore using vue 3 and the composition-api",
+  "main": "dist/index.js",
+  "types": "dist/index.d.ts",
+  "module": "src/index.js",
+  "author": "Jamie Curnow",
+  "license": "MIT",
+  "private": false,
+  "scripts": {
+    "build": "tsc -d",
+    "watch": "tsc --watch -d"
+  },
+  "dependencies": {
+    "@vue/composition-api": "^1.0.0-beta.14",
+    "firebase": "^7.21.1",
+    "lodash.debounce": "^4.0.8",
+    "vue": "^2.6.12"
+  },
+  "devDependencies": {
+    "@types/lodash.debounce": "^4.0.6",
+    "typedoc": "^0.19.2",
+    "typescript": "^4.0.3"
+  }
+}
