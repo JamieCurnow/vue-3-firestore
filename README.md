@@ -363,6 +363,7 @@ return { user, loading, updateUser, deleteUser }
 ```
 
 ### Extending a query (order, where, limit)
+
 ```ts
 interface UserType {
   firstName: string
