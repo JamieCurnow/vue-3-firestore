@@ -3,15 +3,15 @@ import { Ref, ComputedRef } from '@vue/composition-api';
 export interface ReturnBase {
     /** The loading state of the data fetch. Will be true when an async data fetch operation is happening. Works reactively as expected. */
     loading: Ref<boolean>;
-    /** A reactive boolean value to indicate if data has been recieved yet. Will be false as soon as data has been recieved and will stay false thereafter. */
-    recieved: Ref<boolean>;
+    /** A reactive boolean value to indicate if data has been received yet. Will be false as soon as data has been received and will stay false thereafter. */
+    received: Ref<boolean>;
     /** A reactive string of the path with $variables replaced with the true variable value from the 'variables' input object */
     pathReplaced: ComputedRef<string>;
 }
 export interface ReturnColl<T, M> extends ReturnBase {
     /** The data returned from the collection as a reactive array or an ampty array if no data has been fetched yet */
     data: Ref<T[]>;
-    /** Reactive mutated data returned from the mutate() function. If no mutate function is passed, will be equal to 'data'. Will be undefined until initialised and 'recieved' === true */
+    /** Reactive mutated data returned from the mutate() function. If no mutate function is passed, will be equal to 'data'. Will be undefined until initialised and 'received' === true */
     mutatedData: Ref<M | undefined>;
     /** A reactive computed prop that returns the firestore collection reference query */
     firestoreRef: ComputedRef<CollectionRef>;
@@ -21,7 +21,7 @@ export interface ReturnColl<T, M> extends ReturnBase {
 export interface ReturnDoc<T, M> extends ReturnBase {
     /** The data returned from the doc as a reactive object or undefined if no data has been fetched yet */
     data: Ref<T | undefined>;
-    /** Reactive mutated data returned from the mutate() function. If no mutate function is passed, will be equal to 'data'. Will be undefined until initialised and 'recieved' === true */
+    /** Reactive mutated data returned from the mutate() function. If no mutate function is passed, will be equal to 'data'. Will be undefined until initialised and 'received' === true */
     mutatedData: Ref<M | undefined>;
     /** A reactive computed prop that returns the firestore DocumentReference */
     firestoreRef: ComputedRef<Docref>;

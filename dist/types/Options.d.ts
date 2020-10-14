@@ -23,23 +23,23 @@ export interface OptionsColl<T, M> {
     query?: (CollectionRef: CollectionRef) => Query;
     /** Exposes a function to mutate the data that is fetched from firestore. The mutated data will be returned as 'mutatedData' */
     mutate?: (data: T[]) => M;
-    /** Exposes a hook for when a collection is recieved. Provides access to the recieved data and mutated data */
-    onRecieve?: (data: T[], mutatedData: M | undefined) => any;
+    /** Exposes a hook for when a collection is received. Provides access to the received data and mutated data */
+    onReceive?: (data: T[], mutatedData: M | undefined) => any;
 }
 export interface OptionsDoc<T, M> {
     /** The type of this query - collection or doc */
     queryType: 'doc';
     /** Exposes a function to mutate the data that is fetched from firestore. The mutated data will be returned as 'mutatedData' */
     mutate?: (data: T | undefined) => M;
-    /** Exposes a hook for when a doc is recieved. Provides access to the recieved and mutated recieved data */
-    onRecieve?: (data: T | undefined, mutatedData: M | undefined) => any;
+    /** Exposes a hook for when a doc is received. Provides access to the received and mutated received data */
+    onReceive?: (data: T | undefined, mutatedData: M | undefined) => any;
 }
 export interface OptionsWatch {
-    /** The type of the get function - 'watch' or 'get'. 'get' does a single get() from firestore | 'watch' watches for document or collection changes and updates the data recieved */
+    /** The type of the get function - 'watch' or 'get'. 'get' does a single get() from firestore | 'watch' watches for document or collection changes and updates the data received */
     type: 'watch';
 }
 export interface OptionsGet {
-    /** The type of the get function - 'watch' or 'get'. 'get' does a single get() from firestore | 'watch' watches for document or collection changes and updates the data recieved */
+    /** The type of the get function - 'watch' or 'get'. 'get' does a single get() from firestore | 'watch' watches for document or collection changes and updates the data received */
     type: 'get';
 }
 export declare type OptionsCollWatch<T, M> = OptionsBase<T, M> & OptionsColl<T, M> & OptionsWatch;

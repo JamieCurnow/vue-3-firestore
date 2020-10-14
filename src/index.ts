@@ -50,7 +50,7 @@ export default function <T, M = T>(firebase: typeof TypeOfFirebase, options: Opt
   const mutatedData: Ref<undefined | M> = ref(undefined)
   const initialLoading = options.initialLoading === undefined ? true : options.initialLoading
   const loading = ref(initialLoading)
-  const recieved = ref(false)
+  const received = ref(false)
 
   // Path replaced computation
   const pathReplaced = computed(() => {
@@ -116,31 +116,31 @@ export default function <T, M = T>(firebase: typeof TypeOfFirebase, options: Opt
     }
   }
 
-  const recieveCollData = (recievedData: T[]) => {
+  const receiveCollData = (receivedData: T[]) => {
     const opts = options as OptionsCollWatch<T, M> | OptionsCollGet<T, M>
-    mutatedData.value = opts.mutate ? opts.mutate(recievedData) : undefined
-    if (opts.onRecieve) opts.onRecieve(recievedData, mutatedData.value)
-    collectionData.value = recievedData
-    recieved.value = true
+    mutatedData.value = opts.mutate ? opts.mutate(receivedData) : undefined
+    if (opts.onReceive) opts.onReceive(receivedData, mutatedData.value)
+    collectionData.value = receivedData
+    received.value = true
     loading.value = false
-    return { data: recievedData, mutatedData: mutatedData.value }
+    return { data: receivedData, mutatedData: mutatedData.value }
   }
 
-  const recieveDocData = (recievedData: T | undefined) => {
+  const receiveDocData = (receivedData: T | undefined) => {
     const opts = options as OptionsDocGet<T, M> | OptionsDocWatch<T, M>
-    mutatedData.value = opts.mutate ? opts.mutate(recievedData) : undefined
-    if (opts.onRecieve) opts.onRecieve(recievedData, mutatedData.value)
-    data.value = recievedData
-    recieved.value = true
+    mutatedData.value = opts.mutate ? opts.mutate(receivedData) : undefined
+    if (opts.onReceive) opts.onReceive(receivedData, mutatedData.value)
+    data.value = receivedData
+    received.value = true
     loading.value = false
-    return { data: recievedData, mutatedData: mutatedData.value }
+    return { data: receivedData, mutatedData: mutatedData.value }
   }
 
   const getDocData = async () => {
     try {
       const firestoreRefVal = firestoreRef.value as Docref
       const doc = await firestoreRefVal.get()
-      return recieveDocData(doc.exists ? <T>doc.data() : undefined)
+      return receiveDocData(doc.exists ? <T>doc.data() : undefined)
     } catch (e) {
       if (options.onError) {
         options.onError(e)
@@ -155,7 +155,7 @@ export default function <T, M = T>(firebase: typeof TypeOfFirebase, options: Opt
       const firestoreRefVal =
         firestoreQuery.value !== null ? firestoreQuery.value : (firestoreRef.value as CollectionRef)
       const collection = await firestoreRefVal.get()
-      return recieveCollData(collection.size ? collection.docs.map((x) => <T>x.data()) : [])
+      return receiveCollData(collection.size ? collection.docs.map((x) => <T>x.data()) : [])
     } catch (e) {
       if (options.onError) {
         options.onError(e)
@@ -170,13 +170,13 @@ export default function <T, M = T>(firebase: typeof TypeOfFirebase, options: Opt
     try {
       if (firestoreRefIsDoc(firestoreRef.value)) {
         watcher = firestoreRef.value.onSnapshot((doc) => {
-          recieveDocData(doc.exists ? <T>doc.data() : undefined)
+          receiveDocData(doc.exists ? <T>doc.data() : undefined)
         })
       } else {
         const firestoreRefVal =
           firestoreQuery.value !== null ? firestoreQuery.value : (firestoreRef.value as CollectionRef)
         watcher = firestoreRefVal.onSnapshot((collection) => {
-          recieveCollData(collection.size ? collection.docs.map((x) => <T>x.data()) : [])
+          receiveCollData(collection.size ? collection.docs.map((x) => <T>x.data()) : [])
         })
       }
     } catch (e) {
@@ -234,7 +234,7 @@ export default function <T, M = T>(firebase: typeof TypeOfFirebase, options: Opt
   const returnVal = {
     mutatedData,
     loading,
-    recieved,
+    received,
     pathReplaced,
     firestoreRef,
     updateDoc,

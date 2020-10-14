@@ -60,7 +60,7 @@ function default_1(firebase, options) {
     var mutatedData = composition_api_1.ref(undefined);
     var initialLoading = options.initialLoading === undefined ? true : options.initialLoading;
     var loading = composition_api_1.ref(initialLoading);
-    var recieved = composition_api_1.ref(false);
+    var received = composition_api_1.ref(false);
     // Path replaced computation
     var pathReplaced = composition_api_1.computed(function () {
         var path = options.path, variables = options.variables;
@@ -131,25 +131,25 @@ function default_1(firebase, options) {
             return [2 /*return*/];
         });
     }); };
-    var recieveCollData = function (recievedData) {
+    var receiveCollData = function (receivedData) {
         var opts = options;
-        mutatedData.value = opts.mutate ? opts.mutate(recievedData) : undefined;
-        if (opts.onRecieve)
-            opts.onRecieve(recievedData, mutatedData.value);
-        collectionData.value = recievedData;
-        recieved.value = true;
+        mutatedData.value = opts.mutate ? opts.mutate(receivedData) : undefined;
+        if (opts.onReceive)
+            opts.onReceive(receivedData, mutatedData.value);
+        collectionData.value = receivedData;
+        received.value = true;
         loading.value = false;
-        return { data: recievedData, mutatedData: mutatedData.value };
+        return { data: receivedData, mutatedData: mutatedData.value };
     };
-    var recieveDocData = function (recievedData) {
+    var receiveDocData = function (receivedData) {
         var opts = options;
-        mutatedData.value = opts.mutate ? opts.mutate(recievedData) : undefined;
-        if (opts.onRecieve)
-            opts.onRecieve(recievedData, mutatedData.value);
-        data.value = recievedData;
-        recieved.value = true;
+        mutatedData.value = opts.mutate ? opts.mutate(receivedData) : undefined;
+        if (opts.onReceive)
+            opts.onReceive(receivedData, mutatedData.value);
+        data.value = receivedData;
+        received.value = true;
         loading.value = false;
-        return { data: recievedData, mutatedData: mutatedData.value };
+        return { data: receivedData, mutatedData: mutatedData.value };
     };
     var getDocData = function () { return __awaiter(_this, void 0, void 0, function () {
         var firestoreRefVal, doc, e_1;
@@ -161,7 +161,7 @@ function default_1(firebase, options) {
                     return [4 /*yield*/, firestoreRefVal.get()];
                 case 1:
                     doc = _a.sent();
-                    return [2 /*return*/, recieveDocData(doc.exists ? doc.data() : undefined)];
+                    return [2 /*return*/, receiveDocData(doc.exists ? doc.data() : undefined)];
                 case 2:
                     e_1 = _a.sent();
                     if (options.onError) {
@@ -185,7 +185,7 @@ function default_1(firebase, options) {
                     return [4 /*yield*/, firestoreRefVal.get()];
                 case 1:
                     collection = _a.sent();
-                    return [2 /*return*/, recieveCollData(collection.size ? collection.docs.map(function (x) { return x.data(); }) : [])];
+                    return [2 /*return*/, receiveCollData(collection.size ? collection.docs.map(function (x) { return x.data(); }) : [])];
                 case 2:
                     e_2 = _a.sent();
                     if (options.onError) {
@@ -204,13 +204,13 @@ function default_1(firebase, options) {
         try {
             if (type_gates_1.firestoreRefIsDoc(firestoreRef.value)) {
                 watcher = firestoreRef.value.onSnapshot(function (doc) {
-                    recieveDocData(doc.exists ? doc.data() : undefined);
+                    receiveDocData(doc.exists ? doc.data() : undefined);
                 });
             }
             else {
                 var firestoreRefVal = firestoreQuery.value !== null ? firestoreQuery.value : firestoreRef.value;
                 watcher = firestoreRefVal.onSnapshot(function (collection) {
-                    recieveCollData(collection.size ? collection.docs.map(function (x) { return x.data(); }) : []);
+                    receiveCollData(collection.size ? collection.docs.map(function (x) { return x.data(); }) : []);
                 });
             }
         }
@@ -264,7 +264,7 @@ function default_1(firebase, options) {
     var returnVal = {
         mutatedData: mutatedData,
         loading: loading,
-        recieved: recieved,
+        received: received,
         pathReplaced: pathReplaced,
         firestoreRef: firestoreRef,
         updateDoc: updateDoc,
