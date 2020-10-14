@@ -19,32 +19,32 @@ import {
 } from './types/type-gates'
 
 // Overload Watch Collection
-export function FirestoreBind<T, M = T>(
+export default function <T, M = T>(
   firebase: typeof TypeOfFirebase,
   options: { queryType: 'collection'; type: 'watch' } & Options<T, M>
 ): ReturnCollWatch<T, M>
 
 // Overload Get Collection
-export function FirestoreBind<T, M = T>(
+export default function <T, M = T>(
   firebase: typeof TypeOfFirebase,
   options: { queryType: 'collection'; type: 'get' } & Options<T, M>
 ): ReturnCollGet<T, M>
 
 // Overload Watch Doc
-export function FirestoreBind<T, M = T>(
+export default function <T, M = T>(
   firebase: typeof TypeOfFirebase,
   options: { queryType: 'doc'; type: 'watch' } & Options<T, M>
 ): ReturnDocWatch<T, M>
 
 // Overload Get Doc
-export function FirestoreBind<T, M = T>(
+export default function <T, M = T>(
   firebase: typeof TypeOfFirebase,
   options: { queryType: 'doc'; type: 'get' } & Options<T, M>
 ): ReturnDocGet<T, M>
 
 // The function
 // eslint-disable-next-line func-style
-export function FirestoreBind<T, M = T>(firebase: typeof TypeOfFirebase, options: Options<T, M>): any {
+export default function <T, M = T>(firebase: typeof TypeOfFirebase, options: Options<T, M>): any {
   const data: Ref<T | null> = ref(null)
   const collectionData: Ref<T[]> = ref([])
   const mutatedData: Ref<null | M> = ref(null)

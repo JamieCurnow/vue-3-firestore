@@ -37,12 +37,12 @@ Examples:
 <script lang="ts">
 import * as firebase from 'firebase'
 import { defineComponent, ref } from '@vue/composition-api'
-import { FirestoreBind } from 'vue-3-firestore'
+import useFirestore from 'vue-3-firestore'
 export default defineComponent({
   setup() {
     const uid = ref('1')
 
-    const { data, loading } = FirestoreBind(firebase, {
+    const { data, loading } = useFirestore(firebase, {
       queryType: 'doc',
       type: 'watch',
       path: 'collection/$uid',
@@ -65,7 +65,7 @@ export default defineComponent({
 
 ```ts
 import * as firebase from 'firebase'
-const results = FirestoreBind<ReturnDataType>(firebase, options)
+const results = useFirestore<ReturnDataType>(firebase, options)
 ```
 
 ## Options
@@ -109,7 +109,7 @@ All of the examples below are within the context of the Vue composition api `set
 ```ts
 import * as firebase from 'firebase'
 import { defineComponent, ref } from '@vue/composition-api'
-import { FirestoreBind } from 'vue-3-firestore'
+import useFirestore from 'vue-3-firestore'
 export default defineComponent({
   setup() {
     // code examples
@@ -122,7 +122,7 @@ This will save these docs from having a load of boiler 😅
 ### Get Doc (without variables)
 
 ```ts
-const { data, loading } = FirestoreBind(firebase, {
+const { data, loading } = useFirestore(firebase, {
   type: 'get',
   queryType: 'doc',
   path: 'collection/doc'
@@ -134,7 +134,7 @@ return { data, loading  }
 
 ```ts
 const uid = ref('1')
-const { data, loading  } = FirestoreBind(firebase, {
+const { data, loading  } = useFirestore(firebase, {
   type: 'get',
   queryType: 'doc',
   path: 'collection/$id',
@@ -149,7 +149,7 @@ return { data, loading  }
 ### Get Collection (without variables)
 
 ```ts
-const { data, loading  } = FirestoreBind(firebase, {
+const { data, loading  } = useFirestore(firebase, {
   type: 'get',
   queryType: 'collection',
   path: 'collection/doc/subCollection'
@@ -162,7 +162,7 @@ return { data, loading  }
 
 ```ts
 const uid = ref('1')
-const { data, loading  } = FirestoreBind(firebase, {
+const { data, loading  } = useFirestore(firebase, {
   type: 'get',
   queryType: 'collection',
   path: 'collection/$id/subCollection',
@@ -178,7 +178,7 @@ return { data, loading  }
 
 ```ts
 const uid = ref('1')
-const { data, loading  } = FirestoreBind(firebase, {
+const { data, loading  } = useFirestore(firebase, {
   type: 'watch',
   queryType: 'doc',
   path: 'collection/$id',
@@ -194,7 +194,7 @@ return { data, loading  }
 
 ```ts
 const uid = ref('1')
-const { data, loading  } = FirestoreBind(firebase, {
+const { data, loading  } = useFirestore(firebase, {
   type: 'watch',
   queryType: 'collection',
   path: 'collection/$id/subCollection',
@@ -215,7 +215,7 @@ interface UserType {
 }
 
 const uid = ref('1')
-const { data: user, loading } = FirestoreBind<UserType>(firebase, {
+const { data: user, loading } = useFirestore<UserType>(firebase, {
   queryType: 'doc',
   type: 'watch',
   path: 'users/$uid',
@@ -241,7 +241,7 @@ interface UserType {
 type fullName = string
 
 const uid = ref('1')
-const { mutatedData, loading } = FirestoreBind<UserType, fullName>(firebase, {
+const { mutatedData, loading } = useFirestore<UserType, fullName>(firebase, {
   queryType: 'doc',
   type: 'watch',
   path: 'users/$uid',
@@ -266,7 +266,7 @@ interface UserType {
 }
 
 const uid = ref('1')
-const { data: user, loading, getData } = FirestoreBind<UserType>(firebase, {
+const { data: user, loading, getData } = useFirestore<UserType>(firebase, {
   queryType: 'doc',
   type: 'get',
   path: 'users/$uid',
@@ -298,7 +298,7 @@ interface UserType {
 }
 
 const uid = ref('1')
-const { data: user, loading, watchData, stopWatchData } = FirestoreBind<UserType>(firebase, {
+const { data: user, loading, watchData, stopWatchData } = useFirestore<UserType>(firebase, {
   queryType: 'doc',
   type: 'watch',
   path: 'users/$uid',
@@ -326,7 +326,7 @@ interface UserType {
 }
 
 const uid = ref('1')
-const { data: user, loading, updateDoc, deleteDoc } = FirestoreBind<UserType>(firebase, {
+const { data: user, loading, updateDoc, deleteDoc } = useFirestore<UserType>(firebase, {
   queryType: 'doc',
   type: 'watch',
   path: 'users/$uid',
@@ -370,7 +370,7 @@ interface UserType {
   lastName: string
 }
 
-const { data: activeUsers, loading } = FirestoreBind<UserType>(firebase, {
+const { data: activeUsers, loading } = useFirestore<UserType>(firebase, {
   queryType: 'collection',
   type: 'watch',
   path: 'users',

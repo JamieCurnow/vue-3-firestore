@@ -47,14 +47,13 @@ var __generator = (this && this.__generator) || function (thisArg, body) {
     }
 };
 Object.defineProperty(exports, "__esModule", { value: true });
-exports.FirestoreBind = void 0;
 var composition_api_1 = require("@vue/composition-api");
 var lodash_debounce_1 = require("lodash.debounce");
 // Type gates
 var type_gates_1 = require("./types/type-gates");
 // The function
 // eslint-disable-next-line func-style
-function FirestoreBind(firebase, options) {
+function default_1(firebase, options) {
     var _this = this;
     var data = composition_api_1.ref(null);
     var collectionData = composition_api_1.ref([]);
@@ -290,4 +289,4 @@ function FirestoreBind(firebase, options) {
             stopWatchingData: stopWatchingData });
     }
 }
-exports.FirestoreBind = FirestoreBind;
+exports.default = default_1;
