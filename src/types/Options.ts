@@ -26,16 +26,16 @@ export interface OptionsColl<T, M> {
   /** Exposes a function to mutate the data that is fetched from firestore. The mutated data will be returned as 'mutatedData' */
   mutate?: (data: T[]) => M
   /** Exposes a hook for when a collection is recieved. Provides access to the recieved data and mutated data */
-  onRecieve?: (data: T[], mutatedData: M | null) => any
+  onRecieve?: (data: T[], mutatedData: M | undefined) => any
 }
 
 export interface OptionsDoc<T, M> {
   /** The type of this query - collection or doc */
   queryType: 'doc'
   /** Exposes a function to mutate the data that is fetched from firestore. The mutated data will be returned as 'mutatedData' */
-  mutate?: (data: T | null) => M
+  mutate?: (data: T | undefined) => M
   /** Exposes a hook for when a doc is recieved. Provides access to the recieved and mutated recieved data */
-  onRecieve?: (data: T | null, mutatedData: M | null) => any
+  onRecieve?: (data: T | undefined, mutatedData: M | undefined) => any
 }
 
 export interface OptionsWatch {

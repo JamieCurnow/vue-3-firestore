@@ -11,18 +11,18 @@ export interface ReturnBase {
 export interface ReturnColl<T, M> extends ReturnBase {
     /** The data returned from the collection as a reactive array or an ampty array if no data has been fetched yet */
     data: Ref<T[]>;
-    /** Reactive mutated data returned from the mutate() function. If no mutate function is passed, will be equal to 'data'. Will be null until initialised and 'recieved' === true */
-    mutatedData: Ref<M | null>;
+    /** Reactive mutated data returned from the mutate() function. If no mutate function is passed, will be equal to 'data'. Will be undefined until initialised and 'recieved' === true */
+    mutatedData: Ref<M | undefined>;
     /** A reactive computed prop that returns the firestore collection reference query */
     firestoreRef: ComputedRef<CollectionRef>;
-    /** A reactive computed prop that returns the firestore Query if the 'query' input function is used, else it will be null */
+    /** A reactive computed prop that returns the firestore Query if the 'query' input function is used, else it will be undefined */
     firestoreQuery: ComputedRef<Query>;
 }
 export interface ReturnDoc<T, M> extends ReturnBase {
-    /** The data returned from the doc as a reactive object or null if no data has been fetched yet */
-    data: Ref<T | null>;
-    /** Reactive mutated data returned from the mutate() function. If no mutate function is passed, will be equal to 'data'. Will be null until initialised and 'recieved' === true */
-    mutatedData: Ref<M | null>;
+    /** The data returned from the doc as a reactive object or undefined if no data has been fetched yet */
+    data: Ref<T | undefined>;
+    /** Reactive mutated data returned from the mutate() function. If no mutate function is passed, will be equal to 'data'. Will be undefined until initialised and 'recieved' === true */
+    mutatedData: Ref<M | undefined>;
     /** A reactive computed prop that returns the firestore DocumentReference */
     firestoreRef: ComputedRef<Docref>;
     /** Exposes a method for updating the doc via the current firestore DocumentReference. Uses the firestore().doc(pathReplaced).set() function with the { merge: true } options. This way, it can be used to set a new doc as well as update an existing */
@@ -40,14 +40,14 @@ export interface ReturnGetColl<T, M> extends ReturnBase {
     /** Exposes a function for getting data from firestore. firestore().collection(${path}).get */
     getData: () => Promise<{
         data: T[];
-        mutatedData: M | null;
+        mutatedData: M | undefined;
     }>;
 }
 export interface ReturnGetDoc<T, M> extends ReturnBase {
     /** getData provides a function for getting data from firestore. firestore().doc(${path}).get */
     getData: () => Promise<{
-        data: T | null;
-        mutatedData: M | null;
+        data: T | undefined;
+        mutatedData: M | undefined;
     }>;
 }
 export declare type ReturnCollWatch<T, M> = ReturnColl<T, M> & ReturnWatch;

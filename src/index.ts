@@ -45,9 +45,9 @@ export default function <T, M = T>(
 // The function
 // eslint-disable-next-line func-style
 export default function <T, M = T>(firebase: typeof TypeOfFirebase, options: Options<T, M>): any {
-  const data: Ref<T | null> = ref(null)
+  const data: Ref<T | undefined> = ref(undefined)
   const collectionData: Ref<T[]> = ref([])
-  const mutatedData: Ref<null | M> = ref(null)
+  const mutatedData: Ref<undefined | M> = ref(undefined)
   const initialLoading = options.initialLoading === undefined ? true : options.initialLoading
   const loading = ref(initialLoading)
   const recieved = ref(false)
@@ -118,7 +118,7 @@ export default function <T, M = T>(firebase: typeof TypeOfFirebase, options: Opt
 
   const recieveCollData = (recievedData: T[]) => {
     const opts = options as OptionsCollWatch<T, M> | OptionsCollGet<T, M>
-    mutatedData.value = opts.mutate ? opts.mutate(recievedData) : null
+    mutatedData.value = opts.mutate ? opts.mutate(recievedData) : undefined
     if (opts.onRecieve) opts.onRecieve(recievedData, mutatedData.value)
     collectionData.value = recievedData
     recieved.value = true
@@ -126,9 +126,9 @@ export default function <T, M = T>(firebase: typeof TypeOfFirebase, options: Opt
     return { data: recievedData, mutatedData: mutatedData.value }
   }
 
-  const recieveDocData = (recievedData: T | null) => {
+  const recieveDocData = (recievedData: T | undefined) => {
     const opts = options as OptionsDocGet<T, M> | OptionsDocWatch<T, M>
-    mutatedData.value = opts.mutate ? opts.mutate(recievedData) : null
+    mutatedData.value = opts.mutate ? opts.mutate(recievedData) : undefined
     if (opts.onRecieve) opts.onRecieve(recievedData, mutatedData.value)
     data.value = recievedData
     recieved.value = true
@@ -140,7 +140,7 @@ export default function <T, M = T>(firebase: typeof TypeOfFirebase, options: Opt
     try {
       const firestoreRefVal = firestoreRef.value as Docref
       const doc = await firestoreRefVal.get()
-      return recieveDocData(doc.exists ? <T>doc.data() : null)
+      return recieveDocData(doc.exists ? <T>doc.data() : undefined)
     } catch (e) {
       if (options.onError) {
         options.onError(e)
@@ -170,7 +170,7 @@ export default function <T, M = T>(firebase: typeof TypeOfFirebase, options: Opt
     try {
       if (firestoreRefIsDoc(firestoreRef.value)) {
         watcher = firestoreRef.value.onSnapshot((doc) => {
-          recieveDocData(doc.exists ? <T>doc.data() : null)
+          recieveDocData(doc.exists ? <T>doc.data() : undefined)
         })
       } else {
         const firestoreRefVal =

@@ -55,9 +55,9 @@ var type_gates_1 = require("./types/type-gates");
 // eslint-disable-next-line func-style
 function default_1(firebase, options) {
     var _this = this;
-    var data = composition_api_1.ref(null);
+    var data = composition_api_1.ref(undefined);
     var collectionData = composition_api_1.ref([]);
-    var mutatedData = composition_api_1.ref(null);
+    var mutatedData = composition_api_1.ref(undefined);
     var initialLoading = options.initialLoading === undefined ? true : options.initialLoading;
     var loading = composition_api_1.ref(initialLoading);
     var recieved = composition_api_1.ref(false);
@@ -133,7 +133,7 @@ function default_1(firebase, options) {
     }); };
     var recieveCollData = function (recievedData) {
         var opts = options;
-        mutatedData.value = opts.mutate ? opts.mutate(recievedData) : null;
+        mutatedData.value = opts.mutate ? opts.mutate(recievedData) : undefined;
         if (opts.onRecieve)
             opts.onRecieve(recievedData, mutatedData.value);
         collectionData.value = recievedData;
@@ -143,7 +143,7 @@ function default_1(firebase, options) {
     };
     var recieveDocData = function (recievedData) {
         var opts = options;
-        mutatedData.value = opts.mutate ? opts.mutate(recievedData) : null;
+        mutatedData.value = opts.mutate ? opts.mutate(recievedData) : undefined;
         if (opts.onRecieve)
             opts.onRecieve(recievedData, mutatedData.value);
         data.value = recievedData;
@@ -161,7 +161,7 @@ function default_1(firebase, options) {
                     return [4 /*yield*/, firestoreRefVal.get()];
                 case 1:
                     doc = _a.sent();
-                    return [2 /*return*/, recieveDocData(doc.exists ? doc.data() : null)];
+                    return [2 /*return*/, recieveDocData(doc.exists ? doc.data() : undefined)];
                 case 2:
                     e_1 = _a.sent();
                     if (options.onError) {
@@ -204,7 +204,7 @@ function default_1(firebase, options) {
         try {
             if (type_gates_1.firestoreRefIsDoc(firestoreRef.value)) {
                 watcher = firestoreRef.value.onSnapshot(function (doc) {
-                    recieveDocData(doc.exists ? doc.data() : null);
+                    recieveDocData(doc.exists ? doc.data() : undefined);
                 });
             }
             else {
