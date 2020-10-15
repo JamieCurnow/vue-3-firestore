@@ -194,9 +194,11 @@ export default function <T, M = T>(firebase: typeof TypeOfFirebase, options: Opt
     }
   }
 
-  onUnmounted(() => {
-    stopWatchingData()
-  })
+  if (options.type === 'watch') {
+    onUnmounted(() => {
+      stopWatchingData()
+    })
+  }
 
   const dataGetter = () => {
     nextTick(() => {
