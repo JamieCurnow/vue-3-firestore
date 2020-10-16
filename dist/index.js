@@ -231,9 +231,11 @@ function default_1(firebase, options) {
             watcher();
         }
     };
-    composition_api_1.onUnmounted(function () {
-        stopWatchingData();
-    });
+    if (options.type === 'watch') {
+        composition_api_1.onUnmounted(function () {
+            stopWatchingData();
+        });
+    }
     var dataGetter = function () {
         composition_api_1.nextTick(function () {
             if (firestoreRef.value) {
