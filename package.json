@@ -1,6 +1,6 @@
 {
   "name": "vue-3-firestore",
-  "version": "0.0.12",
+  "version": "1.0.0",
   "repository": "https://github.com/JamieCurnow/vue-3-firestore",
   "description": "An easy way to interact with Firestore using vue 3 and the composition-api",
   "main": "dist/index.js",
