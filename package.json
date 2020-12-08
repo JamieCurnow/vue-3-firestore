@@ -17,8 +17,10 @@
   "peerDependencies": {
     "@vue/composition-api": "^1.0.0-beta.21",
     "firebase": "^8.1.2",
-    "lodash.debounce": "^4.0.8",
     "vue": "^2.6.12"
+  },
+  "dependencies": {
+    "lodash.debounce": "^4.0.8"
   },
   "devDependencies": {
     "@types/lodash.debounce": "^4.0.6",
