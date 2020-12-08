@@ -1,3 +1,8 @@
+// // register vue composition api as plugin if needed
+// import Vue from 'vue'
+// import VueCompositionAPI from '@vue/composition-api'
+// Vue.use(VueCompositionAPI)
+
 import TypeOfFirebase from 'firebase'
 import { Ref, ref, computed, watch, nextTick, onUnmounted } from '@vue/composition-api'
 import _debounce from 'lodash.debounce'
