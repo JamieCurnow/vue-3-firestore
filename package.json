@@ -22,7 +22,10 @@
   },
   "devDependencies": {
     "@types/lodash.debounce": "^4.0.6",
-    "typedoc": "^0.19.2",
-    "typescript": "^4.0.3"
+    "@vue/composition-api": "^1.0.0-beta.21",
+    "firebase": "^8.1.2",
+    "lodash.debounce": "^4.0.8",
+    "typescript": "^4.0.3",
+    "vue": "^2.6.12"
   }
 }

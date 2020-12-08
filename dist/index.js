@@ -1,4 +1,8 @@
 "use strict";
+// // register vue composition api as plugin if needed
+// import Vue from 'vue'
+// import VueCompositionAPI from '@vue/composition-api'
+// Vue.use(VueCompositionAPI)
 var __assign = (this && this.__assign) || function () {
     __assign = Object.assign || function(t) {
         for (var s, i = 1, n = arguments.length; i < n; i++) {
