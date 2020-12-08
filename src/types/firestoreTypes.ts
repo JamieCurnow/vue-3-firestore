@@ -1,4 +1,4 @@
-import * as firebase from 'firebase/app'
+import firebase from 'firebase/app'
 
 /** Firestore DocumentReference */
 export type Docref = firebase.firestore.DocumentReference<firebase.firestore.DocumentData>

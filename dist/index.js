@@ -50,14 +50,20 @@ var __importDefault = (this && this.__importDefault) || function (mod) {
     return (mod && mod.__esModule) ? mod : { "default": mod };
 };
 Object.defineProperty(exports, "__esModule", { value: true });
+var firebase_1 = __importDefault(require("firebase"));
 var composition_api_1 = require("@vue/composition-api");
 var lodash_debounce_1 = __importDefault(require("lodash.debounce"));
 // Type gates
 var type_gates_1 = require("./types/type-gates");
 // The function
 // eslint-disable-next-line func-style
-function default_1(firebase, options) {
+function default_1(options) {
     var _this = this;
+    // get firebase and make sure it's setup
+    if (!firebase_1.default.apps.length) {
+        throw new Error('vue-3-firestore Error: No default firebase app found. Please initialize firebase before calling useFirestore');
+    }
+    var firebase = firebase_1.default.app();
     var data = composition_api_1.ref(undefined);
     var collectionData = composition_api_1.ref([]);
     var mutatedData = composition_api_1.ref(undefined);

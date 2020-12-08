@@ -1,4 +1,4 @@
-import * as TypeOfFirebase from 'firebase'
+import TypeOfFirebase from 'firebase'
 import { Ref, ref, computed, watch, nextTick, onUnmounted } from '@vue/composition-api'
 import _debounce from 'lodash.debounce'
 
@@ -20,31 +20,32 @@ import {
 
 // Overload Watch Collection
 export default function <T, M = T>(
-  firebase: typeof TypeOfFirebase,
   options: { queryType: 'collection'; type: 'watch' } & Options<T, M>
 ): ReturnCollWatch<T, M>
 
 // Overload Get Collection
 export default function <T, M = T>(
-  firebase: typeof TypeOfFirebase,
   options: { queryType: 'collection'; type: 'get' } & Options<T, M>
 ): ReturnCollGet<T, M>
 
 // Overload Watch Doc
 export default function <T, M = T>(
-  firebase: typeof TypeOfFirebase,
   options: { queryType: 'doc'; type: 'watch' } & Options<T, M>
 ): ReturnDocWatch<T, M>
 
 // Overload Get Doc
 export default function <T, M = T>(
-  firebase: typeof TypeOfFirebase,
   options: { queryType: 'doc'; type: 'get' } & Options<T, M>
 ): ReturnDocGet<T, M>
 
 // The function
 // eslint-disable-next-line func-style
-export default function <T, M = T>(firebase: typeof TypeOfFirebase, options: Options<T, M>): any {
+export default function <T, M = T>(options: Options<T, M>): any {
+  // get firebase and make sure it's setup
+  if (!TypeOfFirebase.apps.length) {
+    throw new Error('vue-3-firestore Error: No default firebase app found. Please initialize firebase before calling useFirestore')
+  }
+  const firebase = TypeOfFirebase.app()
   const data: Ref<T | undefined> = ref(undefined)
   const collectionData: Ref<T[]> = ref([])
   const mutatedData: Ref<undefined | M> = ref(undefined)
