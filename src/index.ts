@@ -3,7 +3,7 @@
 // import VueCompositionAPI from '@vue/composition-api'
 // Vue.use(VueCompositionAPI)
 
-import TypeOfFirebase from 'firebase'
+import TypeOfFirebase from 'firebase/app'
 import { Ref, ref, computed, watch, nextTick, onUnmounted } from '@vue/composition-api'
 import _debounce from 'lodash.debounce'
 
