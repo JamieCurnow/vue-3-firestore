@@ -18,7 +18,7 @@
   "scripts": {
     "build": "tsc -d",
     "watch": "tsc --watch -d",
-    "test": "tsc"
+    "test": "tsc -d"
   },
   "peerDependencies": {
     "@vue/composition-api": "^1.0.0-beta.21",
